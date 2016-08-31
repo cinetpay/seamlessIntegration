@@ -9,17 +9,19 @@ _Pour avoir une autorisation, veuillez envoyez un mail à [support@cinetpay.com]
 
 L'integration de ce SDK se fait en trois etapes :
 
-## Etape 1 : Preparer la page de notification
+## Etape 1 : Préparer la page de notification
 
+Pour ceux qui possèdent des services qui ne neccessitent pas un traitement des notifications de paiement de CinetPay, vous pouvez passer directement à l'etape 2, par exemple les service de don. 
 A chaque paiement, CinetPay vous notifie via un lien de notification, nous vous conseillons de toujours le traiter côté serveur. Nous allons utiliser PHP dans ce cas de figure :
 Script index.php dans http://mondomaine.com/notify/ (le script doit se trouver dans le repertoire de votre notify_url) ;
 ```php
 <?php
 if (isset($_POST['cpm_trans_id'])) {
     // SDK PHP de CinetPay 
-    require_once __DIR__ . '/CinetPay.php';
+    require_once __DIR__ . '/cinetPay.php';
+    require_once __DIR__ . '/commande.php';
 
-    //La classe commande correspond à votre colonne qui gère les transactions dans votre base de donnée
+    //La classe commande correspond à votre colonne qui gère les transactions dans votre base de données
     $commande = new Commande();
     try {
         // Initialisation de CinetPay et Identification du paiement
@@ -51,7 +53,7 @@ if (isset($_POST['cpm_trans_id'])) {
         $cpm_designation = $CinetPay->_cpm_designation;
         $buyer_name = $CinetPay->_buyer_name;
 
-        // Recuperation de la ligne de la transaction dans votre base de donnée
+        // Recuperation de la ligne de la transaction dans votre base de données
         $commande->setTransId($id_transaction);
         $commande->getCommandeByTransId();
         // Verification de l'etat du traitement de la commande
@@ -68,7 +70,7 @@ if (isset($_POST['cpm_trans_id'])) {
         $commande->setPhone($cel_phone_num);
         $commande->setDatePaiement($cpm_payment_date . ' ' . $cpm_payment_time);
 
-        // On verifie que le montant payé chez CinetPay correspond à notre montant en base de donnée pour cette transaction
+        // On verifie que le montant payé chez CinetPay correspond à notre montant en base de données pour cette transaction
         if ($commande->getMontant() == $cpm_amount) {
             // C'est OK : On continue le remplissage des nouvelles données
             $commande->setErrorMessage($cpm_error_message);
@@ -89,8 +91,7 @@ if (isset($_POST['cpm_trans_id'])) {
         $commande->update();
     } catch (Exception $e) {
         echo "Erreur :" . $e->getMessage();
-        // Une erreur s'est produite :
-        die();
+        // Une erreur s'est produite
     }
 } else {
     // Tentative d'accès direct au lien IPN
@@ -104,7 +105,7 @@ Avant de commencer cette etape, il faut lier le seamless SDK à votre page :
 * `https://www.cinetpay.com/cdn/seamless_sdk/latest/cinetpay.sandbox.min.js` : si vous êtes en test
 * `https://www.cinetpay.com/cdn/seamless_sdk/latest/cinetpay.prod.min.js`    : si vous êtes en production
 
-Cela se fait dans la balise head de votre page 
+Cela se fait dans la balise head de votre page web
 
 Exemple
 
@@ -142,15 +143,15 @@ Exemple :
 
     <input type="hidden" placeholder="Designation du produit" id="designation" value="Achat de chaussure noir">
     
-    <button type="button" class="btn btn-default" id="process_payment">Proceder au Paiement</button>    
+    <button type="submit" class="btn btn-default" id="process_payment">Proceder au Paiement</button>    
 </form>
 ```
-NB : _Avant l'affichage de ce formulaire, vous devez enregistrer les informations concernant cette transaction dans votre base de donnée afin de les verifier après paiement du client_
+NB : _Avant l'affichage de ce formulaire, vous devez enregistrer les informations concernant cette transaction dans votre base de données afin de les verifier après paiement du client_
 
 ####Lier le formulaire au SDK Javascript
 
-Il faudrait qu'au clic du formulaire, Le formulaire puisse recuperer les informations liées à la transaction chez CinetPay et debute le paiement transparent depuis votre site,
-Fichier config.js :
+Sur clic du bouton "Proceder au Paiement", Nous allons recuperer le montant de la transaction, l'identifiant de la transaction, la devise, la désignation et l'url de notification pour debuter le processus de paiement transparent sur CinetPay
+Exemple (fichier payment.js) :
 ```html
 <script >
     CinetPay.setConfig({
@@ -171,16 +172,15 @@ Fichier config.js :
 </script>
 ```
 
-
 ## Etape 3 : Observer  le paiement transparent
 
-Lorsque le client valide le formulaire, Vous pouvez suivre l'etat d'avancement du client sur CinetPay grace à ces evenement :
+Lorsque le client se trouve sur le guichet de CinetPay, Vous pouvez suivre l'etat d'avancement du client sur CinetPay grace à ces evènements :
 
-* `error` : Une erreur s'est produite, les requëtes ajax ou le paiement ont echoué,
-* `paymentPending` Le paiement est en cours
-* `paymentSuccessfull` Le paiement est terminé, Le paiement est valide ou est annulé
+* `error`              : Une erreur s'est produite, les requëtes ajax ou le paiement ont echoué,
+* `paymentPending`     : Le paiement est en cours
+* `paymentSuccessfull` : Le paiement est terminé, Le paiement est valide ou est annulé
 
-Exemple ; Fichier config.js suite :
+Exemple (suite du fichier payment.js):
 
 ```html
 <script >
@@ -226,4 +226,9 @@ CinetPay Seamless Integration a été testé et fonctionne sur :
 * jQuery Mobile
 
 ## Votre Api Key et Site ID
+
 Ces informations sont disponibles dans votre BackOffice CinetPay.
+
+## Exemple Intégration
+
+Vous trouverez un exemple d'intégration complet dans le dossier exemple/html/
