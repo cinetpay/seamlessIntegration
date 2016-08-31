@@ -3,6 +3,8 @@
 CinetPay Seamless Integration permet d'integrer facilement CinetPay de façcn transparente à sa boutique, c'est à dire que le client effectue le paiement sans quitter
 du marchand.
 
+_Il vous une autorisation de votre apiKey et de votre siteId par CinetPay pour utiliser le seamless Integration_
+
 L'integration de ce SDK se fait en trois etapes :
 
 ## Etape 1 ; Preparer la page de notification
@@ -22,7 +24,7 @@ if (isset($_POST['cpm_trans_id'])) {
         $id_transaction = $_POST['cpm_trans_id'];
         $apiKey = _VOTRE_APIKEY_;
         $site_id = _VOTRE_SITEID_;
-        $plateform = _TEST_OU_PROD_;
+        $plateform = "TEST"; // Valorisé à PROD si vous êtes en production
         $CinetPay = new CinetPay($site_id, $apiKey, $plateform);
         // Reprise exacte des bonnes données chez CinetPay
         $CinetPay->setTransId($id_transaction)->getPayStatus();
@@ -89,6 +91,15 @@ if (isset($_POST['cpm_trans_id'])) {
 ```
 ## Etape 2 : Préparation du formulaire de paiement
 
+Avant de commencer cette etape, il faut lier le seamless SDK à votre page :
+
+* `https://www.cinetpay.com/cdn/seamless_sdk/latest/cinetpay.sandbox.min.js` : si vous êtes en test
+* `https://www.cinetpay.com/cdn/seamless_sdk/latest/cinetpay.prod.min.js`    : si vous êtes en production
+
+Cela se fait dans la balise head de votre page 
+
+Exemple
+
 ####Creation du formulaire CinetPay
 
 Le formulaire de paiement CinetPay est constitué de :
@@ -99,6 +110,16 @@ Le formulaire de paiement CinetPay est constitué de :
 * `notify_url`  : le lien de notification silencieuse (IPN) après paiement
 
 Exemple :
+
+```html
+   <head>
+       ...
+       <script charset="utf-8" 
+               src="https://www.cinetpay.com/cdn/seamless_sdk/latest/cinetpay.sandbox.min.js"
+               type="text/javascript">
+       </script>
+   </head> 
+```
 
 ```html
 <p id="payment_result"></p>
@@ -166,11 +187,10 @@ Exemple ; Fichier config.js suite :
         result_div.innerHTML += '<b>code:</b>' + e.code + '<br><b>Message:</b>:' + e.message;
    });
    CinetPay.on('paymentSuccessfull', function (paymentInfo) {
-           var result_div = document.getElementById('success_info');
            if(typeof paymentInfo.lastTime != 'undefined'){
                result_div.innerHTML = '';
                if(paymentInfo.cpm_result == '00'){
-                   result_div.innerHTML = 'Votre paiement a été validé avec succès : <br> Montant :'+paymentInfo.cpm_amount+'<br>';
+                   result_div.innerHTML = 'Votre paiement a été validé avec succès : <br> Montant payé :'+paymentInfo.cpm_amount+'<br>';
                }else{
                    result_div.innerHTML = 'Une erreur est survenue :'+paymentInfo.cpm_error_message;
                }
@@ -187,9 +207,15 @@ CinetPay Seamless Integration a été testé et fonctionne sur tous les navigate
 * Safari
 * Firefox
 * Internet Explorer 8+.
-* Android 4+
+
+## Compatiblité Application Hybride
+
+CinetPay Seamless Integration a été testé et fonctionne sur :
+
+* Cordova
+* phoneGap
+* Ionic
+* jQuery Mobile
 
 ## Votre Api Key et Site ID
 Ces informations sont disponibles dans votre BackOffice CinetPay.
-
-Vous devez avoir une autorisation de CinetPay pour utiliser ce SDK
