@@ -11,10 +11,10 @@ L'integration de ce SDK se fait en trois etapes :
 
 ## Etape 1 : Préparer la page de notification
 
-Pour ceux qui possèdent des services qui ne neccessitent pas un traitement des notifications de paiement de CinetPay, vous pouvez passer directement à l'etape 2, par exemple les service de don.
+Pour ceux qui possèdent des services qui ne neccessitent pas un traitement des notifications de paiement de CinetPay, vous pouvez passer directement à l'etape 2, par exemple les services de don.
 
 A chaque paiement, CinetPay vous notifie via un lien de notification, nous vous conseillons de toujours le traiter côté serveur. Nous allons utiliser PHP dans ce cas de figure :
-Script index.php dans http://mondomaine.com/notify/ (le script doit se trouver dans le repertoire de votre notify_url) ;
+Script index.php dans http://mondomaine.com/notify/ (le script doit se trouver dans le repertoire de votre url notify_url) ;
 ```php
 <?php
 if (isset($_POST['cpm_trans_id'])) {
@@ -211,7 +211,7 @@ Exemple (suite du fichier payment.js):
 </script>
 ```
 
-## Compatiblité Navigateurs Web
+## Compatibilité Navigateurs Web
 
 CinetPay Seamless Integration a été testé et fonctionne sur tous les navigateurs modernes y compris :
 
@@ -220,7 +220,7 @@ CinetPay Seamless Integration a été testé et fonctionne sur tous les navigate
 * Firefox
 * Internet Explorer 8+.
 
-## Compatiblité Application Hybride
+## Compatibilité Application Hybride
 
 CinetPay Seamless Integration a été testé et fonctionne sur :
 
