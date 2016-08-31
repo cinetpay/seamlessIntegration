@@ -78,7 +78,7 @@ if (isset($_POST['cpm_trans_id'])) {
             $commande->setTransStatus($cpm_trans_status);
             if($cpm_result == '00'){
                 //Le paiement est bon
-                // Traitez et et delivré le service au client
+                // Traitez et delivrez le service au client
             }else{
                 //Le paiement a échoué
             }
