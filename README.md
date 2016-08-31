@@ -1,11 +1,15 @@
 # [CinetPay](http://www.cinetpay.com) Seamless Integration
 
-CinetPay Seamless Integration permet d'integrer facilement CinetPay de façcn transparente à sa boutique, c'est à dire que le client effectue le paiement sans quitter
+CinetPay Seamless Integration permet d'intégrer facilement CinetPay de façon transparente à son service en ligne, c'est à dire que le client effectue le paiement sans quitter le site
 du marchand.
+
+_Il vous faut au préalable avoir une autorisation par CinetPay pour utiliser le seamless Integration_
+
+_Pour avoir une autorisation, veuillez envoyez un mail à [support@cinetpay.com](mailto:support@cinetpay.com)_
 
 L'integration de ce SDK se fait en trois etapes :
 
-## Etape 1 ; Preparer la page de notification
+## Etape 1 : Preparer la page de notification
 
 A chaque paiement, CinetPay vous notifie via un lien de notification, nous vous conseillons de toujours le traiter côté serveur. Nous allons utiliser PHP dans ce cas de figure :
 Script index.php dans http://mondomaine.com/notify/ (le script doit se trouver dans le repertoire de votre notify_url) ;
@@ -22,7 +26,7 @@ if (isset($_POST['cpm_trans_id'])) {
         $id_transaction = $_POST['cpm_trans_id'];
         $apiKey = _VOTRE_APIKEY_;
         $site_id = _VOTRE_SITEID_;
-        $plateform = _TEST_OU_PROD_;
+        $plateform = "TEST"; // Valorisé à PROD si vous êtes en production
         $CinetPay = new CinetPay($site_id, $apiKey, $plateform);
         // Reprise exacte des bonnes données chez CinetPay
         $CinetPay->setTransId($id_transaction)->getPayStatus();
@@ -70,6 +74,12 @@ if (isset($_POST['cpm_trans_id'])) {
             $commande->setErrorMessage($cpm_error_message);
             $commande->setStatut($cpm_result);
             $commande->setTransStatus($cpm_trans_status);
+            if($cpm_result == '00'){
+                //Le paiement est bon
+                // Traitez et et delivré le service au client
+            }else{
+                //Le paiement a échoué
+            }
         } else {
             //Fraude : montant payé ' . $cpm_amount . ' ne correspond pas au montant de la commande
             $commande->setStatut('-1');
@@ -89,6 +99,15 @@ if (isset($_POST['cpm_trans_id'])) {
 ```
 ## Etape 2 : Préparation du formulaire de paiement
 
+Avant de commencer cette etape, il faut lier le seamless SDK à votre page :
+
+* `https://www.cinetpay.com/cdn/seamless_sdk/latest/cinetpay.sandbox.min.js` : si vous êtes en test
+* `https://www.cinetpay.com/cdn/seamless_sdk/latest/cinetpay.prod.min.js`    : si vous êtes en production
+
+Cela se fait dans la balise head de votre page 
+
+Exemple
+
 ####Creation du formulaire CinetPay
 
 Le formulaire de paiement CinetPay est constitué de :
@@ -99,6 +118,16 @@ Le formulaire de paiement CinetPay est constitué de :
 * `notify_url`  : le lien de notification silencieuse (IPN) après paiement
 
 Exemple :
+
+```html
+   <head>
+       ...
+       <script charset="utf-8" 
+               src="https://www.cinetpay.com/cdn/seamless_sdk/latest/cinetpay.sandbox.min.js"
+               type="text/javascript">
+       </script>
+   </head> 
+```
 
 ```html
 <p id="payment_result"></p>
@@ -143,7 +172,7 @@ Fichier config.js :
 ```
 
 
-## Etape 3 ; Observer  le paiement transparent
+## Etape 3 : Observer  le paiement transparent
 
 Lorsque le client valide le formulaire, Vous pouvez suivre l'etat d'avancement du client sur CinetPay grace à ces evenement :
 
@@ -166,11 +195,10 @@ Exemple ; Fichier config.js suite :
         result_div.innerHTML += '<b>code:</b>' + e.code + '<br><b>Message:</b>:' + e.message;
    });
    CinetPay.on('paymentSuccessfull', function (paymentInfo) {
-           var result_div = document.getElementById('success_info');
            if(typeof paymentInfo.lastTime != 'undefined'){
                result_div.innerHTML = '';
                if(paymentInfo.cpm_result == '00'){
-                   result_div.innerHTML = 'Votre paiement a été validé avec succès : <br> Montant :'+paymentInfo.cpm_amount+'<br>';
+                   result_div.innerHTML = 'Votre paiement a été validé avec succès : <br> Montant payé :'+paymentInfo.cpm_amount+'<br>';
                }else{
                    result_div.innerHTML = 'Une erreur est survenue :'+paymentInfo.cpm_error_message;
                }
@@ -179,7 +207,7 @@ Exemple ; Fichier config.js suite :
 </script>
 ```
 
-## Navigateurs supporté
+## Compatiblité Navigateurs Web
 
 CinetPay Seamless Integration a été testé et fonctionne sur tous les navigateurs modernes y compris :
 
@@ -187,9 +215,15 @@ CinetPay Seamless Integration a été testé et fonctionne sur tous les navigate
 * Safari
 * Firefox
 * Internet Explorer 8+.
-* Android 4+
+
+## Compatiblité Application Hybride
+
+CinetPay Seamless Integration a été testé et fonctionne sur :
+
+* Cordova
+* phoneGap
+* Ionic
+* jQuery Mobile
 
 ## Votre Api Key et Site ID
 Ces informations sont disponibles dans votre BackOffice CinetPay.
-
-Vous devez avoir une autorisation de CinetPay pour utiliser ce SDK
