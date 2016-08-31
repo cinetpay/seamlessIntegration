@@ -11,7 +11,8 @@ L'integration de ce SDK se fait en trois etapes :
 
 ## Etape 1 : Préparer la page de notification
 
-Pour ceux qui possèdent des services qui ne neccessitent pas un traitement des notifications de paiement de CinetPay, vous pouvez passer directement à l'etape 2, par exemple les service de don. 
+Pour ceux qui possèdent des services qui ne neccessitent pas un traitement des notifications de paiement de CinetPay, vous pouvez passer directement à l'etape 2, par exemple les service de don.
+
 A chaque paiement, CinetPay vous notifie via un lien de notification, nous vous conseillons de toujours le traiter côté serveur. Nous allons utiliser PHP dans ce cas de figure :
 Script index.php dans http://mondomaine.com/notify/ (le script doit se trouver dans le repertoire de votre notify_url) ;
 ```php
@@ -133,17 +134,19 @@ Exemple :
 ```html
 <p id="payment_result"></p>
 <form id="info_paiement">
-    <input type="hidden"  id="amount" name="amount" value="10">
+    <input type="hidden"  id="amount" value="10">
 
-    <input type="hidden" value="CFA" name="currency" id="currency">
+    <input type="hidden" id="currency" value="CFA">
 
-    <input type="hidden" autocomplete="off" id="notify_url" value="http://mondomaine.com/notify">
+    <input type="hidden" id="notify_url" value="http://mondomaine.com/notify">
     
-    <input type="hidden" placeholder="Ref transaction" autocomplete="off" id="trans_id" value="">
-
-    <input type="hidden" placeholder="Designation du produit" id="designation" value="Achat de chaussure noir">
+    <input type="hidden" id="trans_id" value="">
     
-    <button type="submit" class="btn btn-default" id="process_payment">Proceder au Paiement</button>    
+    <input type="hidden" id="cpm_custom" value="">
+
+    <input type="hidden" id="designation" value="Achat de chaussure noir">
+    
+    <button type="submit" id="process_payment">Proceder au Paiement</button>    
 </form>
 ```
 NB : _Avant l'affichage de ce formulaire, vous devez enregistrer les informations concernant cette transaction dans votre base de données afin de les verifier après paiement du client_
@@ -165,6 +168,7 @@ Exemple (fichier payment.js) :
                 trans_id: document.getElementById('trans_id').value,
                 currency: document.getElementById('currency').value,
                 designation: document.getElementById('designation').value,
+                cpm_custom: document.getElementById('cpm_custom').value,
                 notify_url: document.getElementById('notify_url').value
             });
             CinetPay.getSignature();

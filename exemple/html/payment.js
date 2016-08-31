@@ -63,7 +63,9 @@ function init() {
             amount: parseInt(document.getElementById('amount').value),
             trans_id: document.getElementById('trans_id').value,
             currency: document.getElementById('currency').value,
-            designation: document.getElementById('designation').value
+            designation: document.getElementById('designation').value,
+            cpm_custom: document.getElementById('cpm_custom').value,
+            notify_url: document.getElementById('notify_url').value
         });
         CinetPay.getSignature();
     });
