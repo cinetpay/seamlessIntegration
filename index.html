@@ -1,106 +1,173 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
+<html lang="fr">
+<head>
     <meta charset="UTF-8">
-    <title>Seamless Integration by cinetpay</title>
+    <title>Cinetpay Seamless SDK Integration</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Seamless Integration</h1>
-      <h2 class="project-tagline">CinetPay Seamless Integration permet d&#39;integrer facilement CinetPay de façon transparente à son service</h2>
-      <a href="https://github.com/cinetpay/seamlessIntegration" class="btn">View on GitHub</a>
-      <a href="https://github.com/cinetpay/seamlessIntegration/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/cinetpay/seamlessIntegration/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+</head>
+<body>
+<section class="page-header">
+    <h1 class="project-name">Seamless Integration</h1>
+    <h2 class="project-tagline">CinetPay Seamless Integration permet d&#39;integrer facilement CinetPay de façon
+        transparente à son service</h2>
+    <a href="https://github.com/cinetpay/seamlessIntegration" class="btn">Voir sur GitHub</a>
+    <a href="https://github.com/cinetpay/seamlessIntegration/zipball/master" class="btn">Télécharger .zip</a>
+    <a href="https://github.com/cinetpay/seamlessIntegration/tarball/master" class="btn">Télécharger .tar.gz</a>
+</section>
 
-    <section class="main-content">
-      <h1>
-<a id="cinetpay-seamless-integration" class="anchor" href="#cinetpay-seamless-integration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="http://www.cinetpay.com">CinetPay</a> Seamless Integration</h1>
+<section class="main-content">
+    <h1>
+        <a id="cinetpay-seamless-integration" class="anchor" href="#cinetpay-seamless-integration"
+           aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a
+            href="http://www.cinetpay.com">CinetPay</a> Seamless Integration</h1>
 
-<p>CinetPay Seamless Integration permet d'intégrer facilement CinetPay de façon transparente à son service en ligne, c'est à dire que le client effectue le paiement sans quitter le site
-du marchand.</p>
+    <p>CinetPay Seamless Integration permet d'intégrer facilement CinetPay de façon transparente à son service en ligne,
+        c'est à dire que le client effectue le paiement sans quitter le site
+        du marchand.
+    </p>
 
-<p><em>Il vous faut au préalable avoir une autorisation par CinetPay pour utiliser le seamless Integration</em></p>
+    <p><em>Il vous faut au préalable avoir une autorisation par CinetPay pour utiliser le seamless Integration</em></p>
 
-<p><em>Pour avoir une autorisation, veuillez envoyez un mail à <a href="mailto:support@cinetpay.com">support@cinetpay.com</a></em></p>
+    <p><em>Pour avoir une autorisation, veuillez envoyez un mail à <a href="mailto:support@cinetpay.com">support@cinetpay.com</a></em>
+    </p>
 
-<p>L'integration de ce SDK se fait en trois etapes :</p>
+    <p>L'integration de ce SDK se fait en trois etapes :</p>
 
-<h2>
-<a id="etape-1--préparer-la-page-de-notification" class="anchor" href="#etape-1--pr%C3%A9parer-la-page-de-notification" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Etape 1 : Préparer la page de notification</h2>
+    <h2>
+        <a id="etape-1--préparer-la-page-de-notification" class="anchor"
+           href="#etape-1--pr%C3%A9parer-la-page-de-notification" aria-hidden="true"><span aria-hidden="true"
+                                                                                           class="octicon octicon-link"></span></a>Etape
+        1 : Préparer la page de notification</h2>
 
-<p>Pour ceux qui possèdent des services qui ne neccessitent pas un traitement des notifications de paiement de CinetPay, vous pouvez passer directement à l'etape 2, par exemple les services de don.</p>
+    <p>Pour ceux qui possèdent des services qui ne neccessitent pas un traitement des notifications de paiement de
+        CinetPay, vous pouvez passer directement à l'etape 2, par exemple les services de don.</p>
 
-<p>A chaque paiement, CinetPay vous notifie via un lien de notification, nous vous conseillons de toujours le traiter côté serveur. Nous allons utiliser PHP dans ce cas de figure :
-Script index.php dans <a href="http://mondomaine.com/notify/">http://mondomaine.com/notify/</a> (le script doit se trouver dans le repertoire de votre url notify_url) ;</p>
+    <p>A chaque paiement, CinetPay vous notifie via un lien de notification, nous vous conseillons de toujours le
+        traiter côté serveur. Nous allons utiliser PHP dans ce cas de figure :
+        Script index.php dans <a href="http://mondomaine.com/notify/">http://mondomaine.com/notify/</a> (le script doit
+        se trouver dans le repertoire de votre url notify_url) ;</p>
 
-<div class="highlight highlight-text-html-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
-<span class="pl-s1"><span class="pl-k">if</span> (<span class="pl-c1">isset</span>(<span class="pl-smi">$_POST</span>[<span class="pl-s"><span class="pl-pds">'</span>cpm_trans_id<span class="pl-pds">'</span></span>])) {</span>
+    <div class="highlight highlight-text-html-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">if</span> (<span class="pl-c1">isset</span>(<span
+        class="pl-smi">$_POST</span>[<span class="pl-s"><span class="pl-pds">'</span>cpm_trans_id<span
+        class="pl-pds">'</span></span>])) {</span>
 <span class="pl-s1">    <span class="pl-c">// SDK PHP de CinetPay </span></span>
-<span class="pl-s1">    <span class="pl-k">require_once</span> <span class="pl-c1">__DIR__</span> <span class="pl-k">.</span> <span class="pl-s"><span class="pl-pds">'</span>/cinetPay.php<span class="pl-pds">'</span></span>;</span>
-<span class="pl-s1">    <span class="pl-k">require_once</span> <span class="pl-c1">__DIR__</span> <span class="pl-k">.</span> <span class="pl-s"><span class="pl-pds">'</span>/commande.php<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1">    <span class="pl-k">require_once</span> <span class="pl-c1">__DIR__</span> <span
+        class="pl-k">.</span> <span class="pl-s"><span class="pl-pds">'</span>/cinetPay.php<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1">    <span class="pl-k">require_once</span> <span class="pl-c1">__DIR__</span> <span
+        class="pl-k">.</span> <span class="pl-s"><span class="pl-pds">'</span>/commande.php<span class="pl-pds">'</span></span>;</span>
 <span class="pl-s1"></span>
 <span class="pl-s1">    <span class="pl-c">//La classe commande correspond à votre colonne qui gère les transactions dans votre base de données</span></span>
-<span class="pl-s1">    <span class="pl-smi">$commande</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Commande</span>();</span>
+<span class="pl-s1">    <span class="pl-smi">$commande</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span
+        class="pl-c1">Commande</span>();</span>
 <span class="pl-s1">    <span class="pl-k">try</span> {</span>
 <span class="pl-s1">        <span class="pl-c">// Initialisation de CinetPay et Identification du paiement</span></span>
-<span class="pl-s1">        <span class="pl-smi">$id_transaction</span> <span class="pl-k">=</span> <span class="pl-smi">$_POST</span>[<span class="pl-s"><span class="pl-pds">'</span>cpm_trans_id<span class="pl-pds">'</span></span>];</span>
+<span class="pl-s1">        <span class="pl-smi">$id_transaction</span> <span class="pl-k">=</span> <span
+        class="pl-smi">$_POST</span>[<span class="pl-s"><span class="pl-pds">'</span>cpm_trans_id<span
+        class="pl-pds">'</span></span>];</span>
 <span class="pl-s1">        <span class="pl-smi">$apiKey</span> <span class="pl-k">=</span> <span class="pl-c1">_VOTRE_APIKEY_</span>;</span>
 <span class="pl-s1">        <span class="pl-smi">$site_id</span> <span class="pl-k">=</span> <span class="pl-c1">_VOTRE_SITEID_</span>;</span>
-<span class="pl-s1">        <span class="pl-smi">$plateform</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>TEST<span class="pl-pds">"</span></span>; <span class="pl-c">// Valorisé à PROD si vous êtes en production</span></span>
-<span class="pl-s1">        <span class="pl-smi">$CinetPay</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">CinetPay</span>(<span class="pl-smi">$site_id</span>, <span class="pl-smi">$apiKey</span>, <span class="pl-smi">$plateform</span>);</span>
+<span class="pl-s1">        <span class="pl-smi">$plateform</span> <span class="pl-k">=</span> <span class="pl-s"><span
+        class="pl-pds">"</span>TEST<span class="pl-pds">"</span></span>; <span class="pl-c">// Valorisé à PROD si vous êtes en production</span></span>
+<span class="pl-s1">        <span class="pl-smi">$CinetPay</span> <span class="pl-k">=</span> <span
+        class="pl-k">new</span> <span class="pl-c1">CinetPay</span>(<span class="pl-smi">$site_id</span>, <span
+        class="pl-smi">$apiKey</span>, <span class="pl-smi">$plateform</span>);</span>
 <span class="pl-s1">        <span class="pl-c">// Reprise exacte des bonnes données chez CinetPay</span></span>
-<span class="pl-s1">        <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span>setTransId(<span class="pl-smi">$id_transaction</span>)<span class="pl-k">-&gt;</span>getPayStatus();</span>
-<span class="pl-s1">        <span class="pl-smi">$cpm_site_id</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span class="pl-smi">_cpm_site_id</span>;</span>
-<span class="pl-s1">        <span class="pl-smi">$signature</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span class="pl-smi">_signature</span>;</span>
-<span class="pl-s1">        <span class="pl-smi">$cpm_amount</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span class="pl-smi">_cpm_amount</span>;</span>
-<span class="pl-s1">        <span class="pl-smi">$cpm_trans_id</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span class="pl-smi">_cpm_trans_id</span>;</span>
-<span class="pl-s1">        <span class="pl-smi">$cpm_custom</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span class="pl-smi">_cpm_custom</span>;</span>
-<span class="pl-s1">        <span class="pl-smi">$cpm_currency</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span class="pl-smi">_cpm_currency</span>;</span>
-<span class="pl-s1">        <span class="pl-smi">$cpm_payid</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span class="pl-smi">_cpm_payid</span>;</span>
-<span class="pl-s1">        <span class="pl-smi">$cpm_payment_date</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span class="pl-smi">_cpm_payment_date</span>;</span>
-<span class="pl-s1">        <span class="pl-smi">$cpm_payment_time</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span class="pl-smi">_cpm_payment_time</span>;</span>
-<span class="pl-s1">        <span class="pl-smi">$cpm_error_message</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span class="pl-smi">_cpm_error_message</span>;</span>
-<span class="pl-s1">        <span class="pl-smi">$payment_method</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span class="pl-smi">_payment_method</span>;</span>
-<span class="pl-s1">        <span class="pl-smi">$cpm_phone_prefixe</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span class="pl-smi">_cpm_phone_prefixe</span>;</span>
-<span class="pl-s1">        <span class="pl-smi">$cel_phone_num</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span class="pl-smi">_cel_phone_num</span>;</span>
-<span class="pl-s1">        <span class="pl-smi">$cpm_ipn_ack</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span class="pl-smi">_cpm_ipn_ack</span>;</span>
-<span class="pl-s1">        <span class="pl-smi">$created_at</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span class="pl-smi">_created_at</span>;</span>
-<span class="pl-s1">        <span class="pl-smi">$updated_at</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span class="pl-smi">_updated_at</span>;</span>
-<span class="pl-s1">        <span class="pl-smi">$cpm_result</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span class="pl-smi">_cpm_result</span>;</span>
-<span class="pl-s1">        <span class="pl-smi">$cpm_trans_status</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span class="pl-smi">_cpm_trans_status</span>;</span>
-<span class="pl-s1">        <span class="pl-smi">$cpm_designation</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span class="pl-smi">_cpm_designation</span>;</span>
-<span class="pl-s1">        <span class="pl-smi">$buyer_name</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span class="pl-smi">_buyer_name</span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span>setTransId(<span
+        class="pl-smi">$id_transaction</span>)<span class="pl-k">-&gt;</span>getPayStatus();</span>
+<span class="pl-s1">        <span class="pl-smi">$cpm_site_id</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span
+        class="pl-k">-&gt;</span><span class="pl-smi">_cpm_site_id</span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$signature</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span
+        class="pl-k">-&gt;</span><span class="pl-smi">_signature</span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$cpm_amount</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span
+        class="pl-k">-&gt;</span><span class="pl-smi">_cpm_amount</span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$cpm_trans_id</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span
+        class="pl-k">-&gt;</span><span class="pl-smi">_cpm_trans_id</span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$cpm_custom</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span
+        class="pl-k">-&gt;</span><span class="pl-smi">_cpm_custom</span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$cpm_currency</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span
+        class="pl-k">-&gt;</span><span class="pl-smi">_cpm_currency</span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$cpm_payid</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span
+        class="pl-k">-&gt;</span><span class="pl-smi">_cpm_payid</span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$cpm_payment_date</span> <span class="pl-k">=</span> <span
+        class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span
+        class="pl-smi">_cpm_payment_date</span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$cpm_payment_time</span> <span class="pl-k">=</span> <span
+        class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span
+        class="pl-smi">_cpm_payment_time</span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$cpm_error_message</span> <span class="pl-k">=</span> <span
+        class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span
+        class="pl-smi">_cpm_error_message</span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$payment_method</span> <span class="pl-k">=</span> <span
+        class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span
+        class="pl-smi">_payment_method</span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$cpm_phone_prefixe</span> <span class="pl-k">=</span> <span
+        class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span
+        class="pl-smi">_cpm_phone_prefixe</span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$cel_phone_num</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span
+        class="pl-k">-&gt;</span><span class="pl-smi">_cel_phone_num</span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$cpm_ipn_ack</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span
+        class="pl-k">-&gt;</span><span class="pl-smi">_cpm_ipn_ack</span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$created_at</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span
+        class="pl-k">-&gt;</span><span class="pl-smi">_created_at</span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$updated_at</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span
+        class="pl-k">-&gt;</span><span class="pl-smi">_updated_at</span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$cpm_result</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span
+        class="pl-k">-&gt;</span><span class="pl-smi">_cpm_result</span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$cpm_trans_status</span> <span class="pl-k">=</span> <span
+        class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span
+        class="pl-smi">_cpm_trans_status</span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$cpm_designation</span> <span class="pl-k">=</span> <span
+        class="pl-smi">$CinetPay</span><span class="pl-k">-&gt;</span><span
+        class="pl-smi">_cpm_designation</span>;</span>
+<span class="pl-s1">        <span class="pl-smi">$buyer_name</span> <span class="pl-k">=</span> <span class="pl-smi">$CinetPay</span><span
+        class="pl-k">-&gt;</span><span class="pl-smi">_buyer_name</span>;</span>
 <span class="pl-s1"></span>
-<span class="pl-s1">        <span class="pl-c">// Recuperation de la ligne de la transaction dans votre base de données</span></span>
-<span class="pl-s1">        <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setTransId(<span class="pl-smi">$id_transaction</span>);</span>
+<span class="pl-s1">        <span
+        class="pl-c">// Recuperation de la ligne de la transaction dans votre base de données</span></span>
+<span class="pl-s1">        <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setTransId(<span
+        class="pl-smi">$id_transaction</span>);</span>
 <span class="pl-s1">        <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>getCommandeByTransId();</span>
 <span class="pl-s1">        <span class="pl-c">// Verification de l'etat du traitement de la commande</span></span>
-<span class="pl-s1">        <span class="pl-k">if</span> (<span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>getStatut() <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">'</span>00<span class="pl-pds">'</span></span>) {</span>
+<span class="pl-s1">        <span class="pl-k">if</span> (<span class="pl-smi">$commande</span><span
+        class="pl-k">-&gt;</span>getStatut() <span class="pl-k">==</span> <span class="pl-s"><span
+        class="pl-pds">'</span>00<span class="pl-pds">'</span></span>) {</span>
 <span class="pl-s1">            <span class="pl-c">// La commande a été déjà traité</span></span>
 <span class="pl-s1">            <span class="pl-c">// Arret du script</span></span>
 <span class="pl-s1">            <span class="pl-k">die</span>();</span>
 <span class="pl-s1">        }</span>
 <span class="pl-s1">        <span class="pl-c">// Dans le cas contrait, on remplit notre ligne des nouvelles données acquise en cas de tentative de paiement sur CinetPay</span></span>
-<span class="pl-s1">        <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setMethode(<span class="pl-smi">$payment_method</span>);</span>
-<span class="pl-s1">        <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setPayId(<span class="pl-smi">$cpm_payid</span>);</span>
-<span class="pl-s1">        <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setBuyerName(<span class="pl-smi">$buyer_name</span>);</span>
-<span class="pl-s1">        <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setSignature(<span class="pl-smi">$signature</span>);</span>
-<span class="pl-s1">        <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setPhone(<span class="pl-smi">$cel_phone_num</span>);</span>
-<span class="pl-s1">        <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setDatePaiement(<span class="pl-smi">$cpm_payment_date</span> <span class="pl-k">.</span> <span class="pl-s"><span class="pl-pds">'</span> <span class="pl-pds">'</span></span> <span class="pl-k">.</span> <span class="pl-smi">$cpm_payment_time</span>);</span>
+<span class="pl-s1">        <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setMethode(<span
+        class="pl-smi">$payment_method</span>);</span>
+<span class="pl-s1">        <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setPayId(<span
+        class="pl-smi">$cpm_payid</span>);</span>
+<span class="pl-s1">        <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setBuyerName(<span
+        class="pl-smi">$buyer_name</span>);</span>
+<span class="pl-s1">        <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setSignature(<span
+        class="pl-smi">$signature</span>);</span>
+<span class="pl-s1">        <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setPhone(<span
+        class="pl-smi">$cel_phone_num</span>);</span>
+<span class="pl-s1">        <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setDatePaiement(<span
+        class="pl-smi">$cpm_payment_date</span> <span class="pl-k">.</span> <span class="pl-s"><span
+        class="pl-pds">'</span> <span class="pl-pds">'</span></span> <span class="pl-k">.</span> <span class="pl-smi">$cpm_payment_time</span>);</span>
 <span class="pl-s1"></span>
 <span class="pl-s1">        <span class="pl-c">// On verifie que le montant payé chez CinetPay correspond à notre montant en base de données pour cette transaction</span></span>
-<span class="pl-s1">        <span class="pl-k">if</span> (<span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>getMontant() <span class="pl-k">==</span> <span class="pl-smi">$cpm_amount</span>) {</span>
+<span class="pl-s1">        <span class="pl-k">if</span> (<span class="pl-smi">$commande</span><span
+        class="pl-k">-&gt;</span>getMontant() <span class="pl-k">==</span> <span
+        class="pl-smi">$cpm_amount</span>) {</span>
 <span class="pl-s1">            <span class="pl-c">// C'est OK : On continue le remplissage des nouvelles données</span></span>
-<span class="pl-s1">            <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setErrorMessage(<span class="pl-smi">$cpm_error_message</span>);</span>
-<span class="pl-s1">            <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setStatut(<span class="pl-smi">$cpm_result</span>);</span>
-<span class="pl-s1">            <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setTransStatus(<span class="pl-smi">$cpm_trans_status</span>);</span>
-<span class="pl-s1">            <span class="pl-k">if</span>(<span class="pl-smi">$cpm_result</span> <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">'</span>00<span class="pl-pds">'</span></span>){</span>
+<span class="pl-s1">            <span class="pl-smi">$commande</span><span
+        class="pl-k">-&gt;</span>setErrorMessage(<span class="pl-smi">$cpm_error_message</span>);</span>
+<span class="pl-s1">            <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setStatut(<span
+        class="pl-smi">$cpm_result</span>);</span>
+<span class="pl-s1">            <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setTransStatus(<span
+        class="pl-smi">$cpm_trans_status</span>);</span>
+<span class="pl-s1">            <span class="pl-k">if</span>(<span class="pl-smi">$cpm_result</span> <span class="pl-k">==</span> <span
+        class="pl-s"><span class="pl-pds">'</span>00<span class="pl-pds">'</span></span>){</span>
 <span class="pl-s1">                <span class="pl-c">//Le paiement est bon</span></span>
 <span class="pl-s1">                <span class="pl-c">// Traitez et delivrez le service au client</span></span>
 <span class="pl-s1">            }<span class="pl-k">else</span>{</span>
@@ -108,189 +175,315 @@ Script index.php dans <a href="http://mondomaine.com/notify/">http://mondomaine.
 <span class="pl-s1">            }</span>
 <span class="pl-s1">        } <span class="pl-k">else</span> {</span>
 <span class="pl-s1">            <span class="pl-c">//Fraude : montant payé ' . $cpm_amount . ' ne correspond pas au montant de la commande</span></span>
-<span class="pl-s1">            <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setStatut(<span class="pl-s"><span class="pl-pds">'</span>-1<span class="pl-pds">'</span></span>);</span>
-<span class="pl-s1">            <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setTransStatus(<span class="pl-s"><span class="pl-pds">'</span>REFUSED<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">            <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setStatut(<span
+        class="pl-s"><span class="pl-pds">'</span>-1<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">            <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>setTransStatus(<span
+        class="pl-s"><span class="pl-pds">'</span>REFUSED<span class="pl-pds">'</span></span>);</span>
 <span class="pl-s1">        }</span>
 <span class="pl-s1">        <span class="pl-c">// On met à jour notre ligne</span></span>
 <span class="pl-s1">        <span class="pl-smi">$commande</span><span class="pl-k">-&gt;</span>update();</span>
-<span class="pl-s1">    } <span class="pl-k">catch</span> (<span class="pl-c1">Exception</span> <span class="pl-smi">$e</span>) {</span>
-<span class="pl-s1">        <span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">"</span>Erreur :<span class="pl-pds">"</span></span> <span class="pl-k">.</span> <span class="pl-smi">$e</span><span class="pl-k">-&gt;</span>getMessage();</span>
+<span class="pl-s1">    } <span class="pl-k">catch</span> (<span class="pl-c1">Exception</span> <span
+        class="pl-smi">$e</span>) {</span>
+<span class="pl-s1">        <span class="pl-c1">echo</span> <span class="pl-s"><span
+        class="pl-pds">"</span>Erreur :<span class="pl-pds">"</span></span> <span class="pl-k">.</span> <span
+        class="pl-smi">$e</span><span class="pl-k">-&gt;</span>getMessage();</span>
 <span class="pl-s1">        <span class="pl-c">// Une erreur s'est produite</span></span>
 <span class="pl-s1">    }</span>
 <span class="pl-s1">} <span class="pl-k">else</span> {</span>
 <span class="pl-s1">    <span class="pl-c">// Tentative d'accès direct au lien IPN</span></span>
 <span class="pl-s1">}</span>
-<span class="pl-s1"></span><span class="pl-pse"><span class="pl-s1">?</span>&gt;</span></pre></div>
+<span class="pl-s1"></span><span class="pl-pse"><span class="pl-s1">?</span>&gt;</span></pre>
+    </div>
 
-<h2>
-<a id="etape-2--préparation-du-formulaire-de-paiement" class="anchor" href="#etape-2--pr%C3%A9paration-du-formulaire-de-paiement" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Etape 2 : Préparation du formulaire de paiement</h2>
+    <h2>
+        <a id="etape-2--préparation-du-formulaire-de-paiement" class="anchor"
+           href="#etape-2--pr%C3%A9paration-du-formulaire-de-paiement" aria-hidden="true"><span aria-hidden="true"
+                                                                                                class="octicon octicon-link"></span></a>Etape
+        2 : Préparation du formulaire de paiement</h2>
 
-<p>Avant de commencer cette etape, il faut lier le seamless SDK à votre page :</p>
+    <p>Avant de commencer cette etape, il faut lier le seamless SDK à votre page :</p>
 
-<ul>
-<li>
-<code>https://www.cinetpay.com/cdn/seamless_sdk/latest/cinetpay.sandbox.min.js</code> : si vous êtes en test</li>
-<li>
-<code>https://www.cinetpay.com/cdn/seamless_sdk/latest/cinetpay.prod.min.js</code>    : si vous êtes en production</li>
-</ul>
+    <ul>
+        <li>
+            <code>https://www.cinetpay.com/cdn/seamless_sdk/latest/cinetpay.sandbox.min.js</code> : si vous êtes en test
+        </li>
+        <li>
+            <code>https://www.cinetpay.com/cdn/seamless_sdk/latest/cinetpay.prod.min.js</code> : si vous êtes en
+            production
+        </li>
+    </ul>
 
-<p>Cela se fait dans la balise head de votre page web</p>
+    <p>Cela se fait dans la balise head de votre page web</p>
 
-<p>Exemple</p>
+    <p>Exemple</p>
 
-<h4>
-<a id="creation-du-formulaire-cinetpay" class="anchor" href="#creation-du-formulaire-cinetpay" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creation du formulaire CinetPay</h4>
+    <h4>
+        <a id="creation-du-formulaire-cinetpay" class="anchor" href="#creation-du-formulaire-cinetpay"
+           aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creation du formulaire
+        CinetPay</h4>
 
-<p>Le formulaire de paiement CinetPay est constitué de :</p>
+    <p>Le formulaire de paiement CinetPay est constitué de :</p>
 
-<ul>
-<li>
-<code>amount</code>      : Montant du paiement</li>
-<li>
-<code>currency</code>    : Devise du paiement, toujours en CFA pour le moment</li>
-<li>
-<code>trans_id</code>    : L'identifiant de la transaction, elle est unique</li>
-<li>
-<code>designation</code> : La designation de votre paiement</li>
-<li>
-<code>notify_url</code>  : le lien de notification silencieuse (IPN) après paiement</li>
-</ul>
+    <ul>
+        <li>
+            <code>amount</code> : Montant du paiement
+        </li>
+        <li>
+            <code>currency</code> : Devise du paiement, toujours en CFA pour le moment
+        </li>
+        <li>
+            <code>trans_id</code> : L'identifiant de la transaction, elle est unique
+        </li>
+        <li>
+            <code>designation</code> : La designation de votre paiement
+        </li>
+        <li>
+            <code>notify_url</code> : le lien de notification silencieuse (IPN) après paiement
+        </li>
+    </ul>
 
-<p>Exemple :</p>
+    <p>Exemple :</p>
 
-<div class="highlight highlight-text-html-basic"><pre>   &lt;<span class="pl-ent">head</span>&gt;
+    <div class="highlight highlight-text-html-basic"><pre>   &lt;<span class="pl-ent">head</span>&gt;
        ...
-<span class="pl-s1">       &lt;<span class="pl-ent">script</span> <span class="pl-e">charset</span>=<span class="pl-s"><span class="pl-pds">"</span>utf-8<span class="pl-pds">"</span></span> </span>
-<span class="pl-s1">               <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://www.cinetpay.com/cdn/seamless_sdk/latest/cinetpay.sandbox.min.js<span class="pl-pds">"</span></span></span>
-<span class="pl-s1">               <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span>&gt;</span>
+<span class="pl-s1">       &lt;<span class="pl-ent">script</span> <span class="pl-e">charset</span>=<span
+        class="pl-s"><span class="pl-pds">"</span>utf-8<span class="pl-pds">"</span></span> </span>
+<span class="pl-s1">               <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://www.cinetpay.com/cdn/seamless_sdk/latest/cinetpay.sandbox.min.js<span
+        class="pl-pds">"</span></span></span>
+<span class="pl-s1">               <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span
+        class="pl-pds">"</span></span>&gt;</span>
 <span class="pl-s1">       &lt;/<span class="pl-ent">script</span>&gt;</span>
-   &lt;/<span class="pl-ent">head</span>&gt; </pre></div>
+   &lt;/<span class="pl-ent">head</span>&gt; </pre>
+    </div>
 
-<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">p</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>payment_result<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">p</span>&gt;
-&lt;<span class="pl-ent">form</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>info_paiement<span class="pl-pds">"</span></span>&gt;
-    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>hidden<span class="pl-pds">"</span></span>  <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>amount<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>10<span class="pl-pds">"</span></span>&gt;
+    <div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">p</span> <span class="pl-e">id</span>=<span
+            class="pl-s"><span class="pl-pds">"</span>payment_result<span class="pl-pds">"</span></span>&gt;&lt;/<span
+            class="pl-ent">p</span>&gt;
+&lt;<span class="pl-ent">form</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>info_paiement<span
+                class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span
+                class="pl-pds">"</span>hidden<span class="pl-pds">"</span></span>  <span class="pl-e">id</span>=<span
+                class="pl-s"><span class="pl-pds">"</span>amount<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span
+                class="pl-s"><span class="pl-pds">"</span>10<span class="pl-pds">"</span></span>&gt;
 
-    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>hidden<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>currency<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>CFA<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span
+                class="pl-pds">"</span>hidden<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span
+                class="pl-s"><span class="pl-pds">"</span>currency<span class="pl-pds">"</span></span> <span
+                class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>CFA<span
+                class="pl-pds">"</span></span>&gt;
 
-    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>hidden<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>notify_url<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>http://mondomaine.com/notify<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span
+                class="pl-pds">"</span>hidden<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span
+                class="pl-s"><span class="pl-pds">"</span>notify_url<span class="pl-pds">"</span></span> <span
+                class="pl-e">value</span>=<span class="pl-s"><span
+                class="pl-pds">"</span>http://mondomaine.com/notify<span class="pl-pds">"</span></span>&gt;
 
-    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>hidden<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>trans_id<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span
+                class="pl-pds">"</span>hidden<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span
+                class="pl-s"><span class="pl-pds">"</span>trans_id<span class="pl-pds">"</span></span> <span
+                class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;
 
-    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>hidden<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>cpm_custom<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span
+                class="pl-pds">"</span>hidden<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span
+                class="pl-s"><span class="pl-pds">"</span>cpm_custom<span class="pl-pds">"</span></span> <span
+                class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>&gt;
 
-    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>hidden<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>designation<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>Achat de chaussure noir<span class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span
+                class="pl-pds">"</span>hidden<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span
+                class="pl-s"><span class="pl-pds">"</span>designation<span class="pl-pds">"</span></span> <span
+                class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>Achat de chaussure noir<span
+                class="pl-pds">"</span></span>&gt;
 
-    &lt;<span class="pl-ent">button</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>submit<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>process_payment<span class="pl-pds">"</span></span>&gt;Proceder au Paiement&lt;/<span class="pl-ent">button</span>&gt;    
-&lt;/<span class="pl-ent">form</span>&gt;</pre></div>
+    &lt;<span class="pl-ent">button</span> <span class="pl-e">type</span>=<span class="pl-s"><span
+                class="pl-pds">"</span>submit<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span
+                class="pl-s"><span class="pl-pds">"</span>process_payment<span class="pl-pds">"</span></span>&gt;Proceder au Paiement&lt;/<span
+                class="pl-ent">button</span>&gt;
+&lt;/<span class="pl-ent">form</span>&gt;</pre>
+    </div>
 
-<p>NB : <em>Avant l'affichage de ce formulaire, vous devez enregistrer les informations concernant cette transaction dans votre base de données afin de les verifier après paiement du client</em></p>
+    <p>NB : <em>Avant l'affichage de ce formulaire, vous devez enregistrer les informations concernant cette transaction
+        dans votre base de données afin de les verifier après paiement du client</em></p>
 
-<h4>
-<a id="lier-le-formulaire-au-sdk-javascript" class="anchor" href="#lier-le-formulaire-au-sdk-javascript" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Lier le formulaire au SDK Javascript</h4>
+    <h4>
+        <a id="lier-le-formulaire-au-sdk-javascript" class="anchor" href="#lier-le-formulaire-au-sdk-javascript"
+           aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Lier le formulaire au SDK
+        Javascript</h4>
 
-<p>Sur clic du bouton "Proceder au Paiement", Nous allons recuperer le montant de la transaction, l'identifiant de la transaction, la devise, la désignation et l'url de notification pour debuter le processus de paiement transparent sur CinetPay
-Exemple (fichier payment.js) :</p>
+    <p>Sur clic du bouton "Proceder au Paiement", Nous allons recuperer le montant de la transaction, l'identifiant de
+        la transaction, la devise, la désignation et l'url de notification pour debuter le processus de paiement
+        transparent sur CinetPay
+        Exemple (fichier payment.js) :</p>
 
-<div class="highlight highlight-text-html-basic"><pre><span class="pl-s1">&lt;<span class="pl-ent">script</span> &gt;</span>
+    <div class="highlight highlight-text-html-basic"><pre><span class="pl-s1">&lt;<span class="pl-ent">script</span> &gt;</span>
 <span class="pl-s1">    <span class="pl-smi">CinetPay</span>.<span class="pl-en">setConfig</span>({</span>
-<span class="pl-s1">            apikey<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>174323661757617531bf99c9.80613927<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">            apikey<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>174323661757617531bf99c9.80613927<span
+        class="pl-pds">'</span></span>,</span>
 <span class="pl-s1">            site_id<span class="pl-k">:</span> <span class="pl-c1">393509</span></span>
 <span class="pl-s1">        });</span>
-<span class="pl-s1">    <span class="pl-k">var</span> process_payment <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>process_payment<span class="pl-pds">'</span></span>);</span>
-<span class="pl-s1">        <span class="pl-smi">process_payment</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> () {</span>
-<span class="pl-s1">            <span class="pl-smi">CinetPay</span>.<span class="pl-en">setSignatureData</span>({</span>
-<span class="pl-s1">                amount<span class="pl-k">:</span> <span class="pl-c1">parseInt</span>(<span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>amount<span class="pl-pds">'</span></span>).<span class="pl-c1">value</span>),</span>
-<span class="pl-s1">                trans_id<span class="pl-k">:</span> <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>trans_id<span class="pl-pds">'</span></span>).<span class="pl-c1">value</span>,</span>
-<span class="pl-s1">                currency<span class="pl-k">:</span> <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>currency<span class="pl-pds">'</span></span>).<span class="pl-c1">value</span>,</span>
-<span class="pl-s1">                designation<span class="pl-k">:</span> <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>designation<span class="pl-pds">'</span></span>).<span class="pl-c1">value</span>,</span>
-<span class="pl-s1">                cpm_custom<span class="pl-k">:</span> <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>cpm_custom<span class="pl-pds">'</span></span>).<span class="pl-c1">value</span>,</span>
-<span class="pl-s1">                notify_url<span class="pl-k">:</span> <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>notify_url<span class="pl-pds">'</span></span>).<span class="pl-c1">value</span></span>
+<span class="pl-s1">    <span class="pl-k">var</span> process_payment <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span
+        class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>process_payment<span
+        class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">        <span class="pl-smi">process_payment</span>.<span
+        class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, <span
+        class="pl-k">function</span> () {</span>
+<span class="pl-s1">            <span class="pl-smi">CinetPay</span>.<span
+        class="pl-en">setSignatureData</span>({</span>
+<span class="pl-s1">                amount<span class="pl-k">:</span> <span class="pl-c1">parseInt</span>(<span
+        class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>amount<span
+        class="pl-pds">'</span></span>).<span class="pl-c1">value</span>),</span>
+<span class="pl-s1">                trans_id<span class="pl-k">:</span> <span class="pl-c1">document</span>.<span
+        class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>trans_id<span
+        class="pl-pds">'</span></span>).<span class="pl-c1">value</span>,</span>
+<span class="pl-s1">                currency<span class="pl-k">:</span> <span class="pl-c1">document</span>.<span
+        class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>currency<span
+        class="pl-pds">'</span></span>).<span class="pl-c1">value</span>,</span>
+<span class="pl-s1">                designation<span class="pl-k">:</span> <span class="pl-c1">document</span>.<span
+        class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>designation<span
+        class="pl-pds">'</span></span>).<span class="pl-c1">value</span>,</span>
+<span class="pl-s1">                cpm_custom<span class="pl-k">:</span> <span class="pl-c1">document</span>.<span
+        class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>cpm_custom<span
+        class="pl-pds">'</span></span>).<span class="pl-c1">value</span>,</span>
+<span class="pl-s1">                notify_url<span class="pl-k">:</span> <span class="pl-c1">document</span>.<span
+        class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>notify_url<span
+        class="pl-pds">'</span></span>).<span class="pl-c1">value</span></span>
 <span class="pl-s1">            });</span>
 <span class="pl-s1">            <span class="pl-smi">CinetPay</span>.<span class="pl-en">getSignature</span>();</span>
 <span class="pl-s1">        });</span>
-<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
+<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre>
+    </div>
 
-<h2>
-<a id="etape-3--observer--le-paiement-transparent" class="anchor" href="#etape-3--observer--le-paiement-transparent" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Etape 3 : Observer  le paiement transparent</h2>
+    <h2>
+        <a id="etape-3--observer--le-paiement-transparent" class="anchor"
+           href="#etape-3--observer--le-paiement-transparent" aria-hidden="true"><span aria-hidden="true"
+                                                                                       class="octicon octicon-link"></span></a>Etape
+        3 : Observer le paiement transparent</h2>
 
-<p>Lorsque le client se trouve sur le guichet de CinetPay, Vous pouvez suivre l'etat d'avancement du client sur CinetPay grace à ces evènements :</p>
+    <p>Lorsque le client se trouve sur le guichet de CinetPay, Vous pouvez suivre l'etat d'avancement du client sur
+        CinetPay grace à ces evènements :</p>
 
-<ul>
-<li>
-<code>error</code>              : Une erreur s'est produite, les requëtes ajax ou le paiement ont echoué,</li>
-<li>
-<code>paymentPending</code>     : Le paiement est en cours</li>
-<li>
-<code>paymentSuccessfull</code> : Le paiement est terminé, Le paiement est valide ou est annulé</li>
-</ul>
+    <ul>
+        <li>
+            <code>error</code> : Une erreur s'est produite, les requëtes ajax ou le paiement ont echoué,
+        </li>
+        <li>
+            <code>paymentPending</code> : Le paiement est en cours
+        </li>
+        <li>
+            <code>paymentSuccessfull</code> : Le paiement est terminé, Le paiement est valide ou est annulé
+        </li>
+    </ul>
 
-<p>Exemple (suite du fichier payment.js):</p>
+    <p>Exemple (suite du fichier payment.js):</p>
 
-<div class="highlight highlight-text-html-basic"><pre><span class="pl-s1">&lt;<span class="pl-ent">script</span> &gt;</span>
-<span class="pl-s1">   <span class="pl-k">var</span> result_div <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>payment_result<span class="pl-pds">'</span></span>);</span>
-<span class="pl-s1">   <span class="pl-smi">CinetPay</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>error<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">e</span>) {</span>
-<span class="pl-s1">        <span class="pl-smi">result_div</span>.<span class="pl-smi">innerHTML</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>;</span>
-<span class="pl-s1">        <span class="pl-smi">result_div</span>.<span class="pl-smi">innerHTML</span> <span class="pl-k">+=</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;b&gt;Error code:&lt;/b&gt;<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-smi">e</span>.<span class="pl-c1">code</span> <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;br&gt;&lt;b&gt;Message:&lt;/b&gt;:<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-smi">e</span>.<span class="pl-smi">message</span>;</span>
+    <div class="highlight highlight-text-html-basic"><pre><span class="pl-s1">&lt;<span class="pl-ent">script</span> &gt;</span>
+<span class="pl-s1">   <span class="pl-k">var</span> result_div <span class="pl-k">=</span> <span
+        class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">'</span>payment_result<span
+        class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">   <span class="pl-smi">CinetPay</span>.<span class="pl-en">on</span>(<span class="pl-s"><span
+        class="pl-pds">'</span>error<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span
+        class="pl-smi">e</span>) {</span>
+<span class="pl-s1">        <span class="pl-smi">result_div</span>.<span class="pl-smi">innerHTML</span> <span
+        class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span><span
+        class="pl-pds">'</span></span>;</span>
+<span class="pl-s1">        <span class="pl-smi">result_div</span>.<span class="pl-smi">innerHTML</span> <span
+        class="pl-k">+=</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;b&gt;Error code:&lt;/b&gt;<span
+        class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-smi">e</span>.<span class="pl-c1">code</span> <span
+        class="pl-k">+</span> <span class="pl-s"><span
+        class="pl-pds">'</span>&lt;br&gt;&lt;b&gt;Message:&lt;/b&gt;:<span class="pl-pds">'</span></span> <span
+        class="pl-k">+</span> <span class="pl-smi">e</span>.<span class="pl-smi">message</span>;</span>
 <span class="pl-s1">   });</span>
-<span class="pl-s1">   <span class="pl-smi">CinetPay</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>paymentPending<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">e</span>) {</span>
-<span class="pl-s1">       <span class="pl-smi">result_div</span>.<span class="pl-smi">innerHTML</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>;</span>
-<span class="pl-s1">        <span class="pl-smi">result_div</span>.<span class="pl-smi">innerHTML</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Paiement en cours &lt;br&gt;<span class="pl-pds">'</span></span>;</span>
-<span class="pl-s1">        <span class="pl-smi">result_div</span>.<span class="pl-smi">innerHTML</span> <span class="pl-k">+=</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;b&gt;code:&lt;/b&gt;<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-smi">e</span>.<span class="pl-c1">code</span> <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;br&gt;&lt;b&gt;Message:&lt;/b&gt;:<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-smi">e</span>.<span class="pl-smi">message</span>;</span>
+<span class="pl-s1">   <span class="pl-smi">CinetPay</span>.<span class="pl-en">on</span>(<span class="pl-s"><span
+        class="pl-pds">'</span>paymentPending<span class="pl-pds">'</span></span>, <span
+        class="pl-k">function</span> (<span class="pl-smi">e</span>) {</span>
+<span class="pl-s1">       <span class="pl-smi">result_div</span>.<span class="pl-smi">innerHTML</span> <span
+        class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span><span
+        class="pl-pds">'</span></span>;</span>
+<span class="pl-s1">        <span class="pl-smi">result_div</span>.<span class="pl-smi">innerHTML</span> <span
+        class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Paiement en cours &lt;br&gt;<span
+        class="pl-pds">'</span></span>;</span>
+<span class="pl-s1">        <span class="pl-smi">result_div</span>.<span class="pl-smi">innerHTML</span> <span
+        class="pl-k">+=</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;b&gt;code:&lt;/b&gt;<span
+        class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-smi">e</span>.<span class="pl-c1">code</span> <span
+        class="pl-k">+</span> <span class="pl-s"><span
+        class="pl-pds">'</span>&lt;br&gt;&lt;b&gt;Message:&lt;/b&gt;:<span class="pl-pds">'</span></span> <span
+        class="pl-k">+</span> <span class="pl-smi">e</span>.<span class="pl-smi">message</span>;</span>
 <span class="pl-s1">   });</span>
-<span class="pl-s1">   <span class="pl-smi">CinetPay</span>.<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>paymentSuccessfull<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> (<span class="pl-smi">paymentInfo</span>) {</span>
-<span class="pl-s1">           <span class="pl-k">if</span>(<span class="pl-k">typeof</span> <span class="pl-smi">paymentInfo</span>.<span class="pl-smi">lastTime</span> <span class="pl-k">!=</span> <span class="pl-s"><span class="pl-pds">'</span>undefined<span class="pl-pds">'</span></span>){</span>
-<span class="pl-s1">               <span class="pl-smi">result_div</span>.<span class="pl-smi">innerHTML</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>;</span>
-<span class="pl-s1">               <span class="pl-k">if</span>(<span class="pl-smi">paymentInfo</span>.<span class="pl-smi">cpm_result</span> <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">'</span>00<span class="pl-pds">'</span></span>){</span>
-<span class="pl-s1">                   <span class="pl-smi">result_div</span>.<span class="pl-smi">innerHTML</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Votre paiement a été validé avec succès : &lt;br&gt; Montant payé :<span class="pl-pds">'</span></span><span class="pl-k">+</span><span class="pl-smi">paymentInfo</span>.<span class="pl-smi">cpm_amount</span><span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">'</span>&lt;br&gt;<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1">   <span class="pl-smi">CinetPay</span>.<span class="pl-en">on</span>(<span class="pl-s"><span
+        class="pl-pds">'</span>paymentSuccessfull<span class="pl-pds">'</span></span>, <span
+        class="pl-k">function</span> (<span class="pl-smi">paymentInfo</span>) {</span>
+<span class="pl-s1">           <span class="pl-k">if</span>(<span class="pl-k">typeof</span> <span class="pl-smi">paymentInfo</span>.<span
+        class="pl-smi">lastTime</span> <span class="pl-k">!=</span> <span class="pl-s"><span class="pl-pds">'</span>undefined<span
+        class="pl-pds">'</span></span>){</span>
+<span class="pl-s1">               <span class="pl-smi">result_div</span>.<span class="pl-smi">innerHTML</span> <span
+        class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span><span
+        class="pl-pds">'</span></span>;</span>
+<span class="pl-s1">               <span class="pl-k">if</span>(<span class="pl-smi">paymentInfo</span>.<span
+        class="pl-smi">cpm_result</span> <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">'</span>00<span
+        class="pl-pds">'</span></span>){</span>
+<span class="pl-s1">                   <span class="pl-smi">result_div</span>.<span
+        class="pl-smi">innerHTML</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Votre paiement a été validé avec succès : &lt;br&gt; Montant payé :<span
+        class="pl-pds">'</span></span><span class="pl-k">+</span><span class="pl-smi">paymentInfo</span>.<span
+        class="pl-smi">cpm_amount</span><span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">'</span>&lt;br&gt;<span
+        class="pl-pds">'</span></span>;</span>
 <span class="pl-s1">               }<span class="pl-k">else</span>{</span>
-<span class="pl-s1">                   <span class="pl-smi">result_div</span>.<span class="pl-smi">innerHTML</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Une erreur est survenue :<span class="pl-pds">'</span></span><span class="pl-k">+</span><span class="pl-smi">paymentInfo</span>.<span class="pl-smi">cpm_error_message</span>;</span>
+<span class="pl-s1">                   <span class="pl-smi">result_div</span>.<span
+        class="pl-smi">innerHTML</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Une erreur est survenue :<span
+        class="pl-pds">'</span></span><span class="pl-k">+</span><span class="pl-smi">paymentInfo</span>.<span
+        class="pl-smi">cpm_error_message</span>;</span>
 <span class="pl-s1">               }</span>
 <span class="pl-s1">           }</span>
 <span class="pl-s1">   });</span>
-<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
+<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre>
+    </div>
 
-<h2>
-<a id="compatiblité-navigateurs-web" class="anchor" href="#compatiblit%C3%A9-navigateurs-web" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Compatiblité Navigateurs Web</h2>
+    <h2>
+        <a id="compatiblité-navigateurs-web" class="anchor" href="#compatiblit%C3%A9-navigateurs-web"
+           aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Compatiblité Navigateurs
+        Web</h2>
 
-<p>CinetPay Seamless Integration a été testé et fonctionne sur tous les navigateurs modernes y compris :</p>
+    <p>CinetPay Seamless Integration a été testé et fonctionne sur tous les navigateurs modernes y compris :</p>
 
-<ul>
-<li>Chrome</li>
-<li>Safari</li>
-<li>Firefox</li>
-<li>Internet Explorer 8+.</li>
-</ul>
+    <ul>
+        <li>Chrome</li>
+        <li>Safari</li>
+        <li>Firefox</li>
+        <li>Internet Explorer 8+.</li>
+    </ul>
 
-<h2>
-<a id="compatiblité-application-hybride" class="anchor" href="#compatiblit%C3%A9-application-hybride" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Compatiblité Application Hybride</h2>
+    <h2>
+        <a id="compatiblité-application-hybride" class="anchor" href="#compatiblit%C3%A9-application-hybride"
+           aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Compatiblité Application
+        Hybride</h2>
 
-<p>CinetPay Seamless Integration a été testé et fonctionne sur :</p>
+    <p>CinetPay Seamless Integration a été testé et fonctionne sur :</p>
 
-<ul>
-<li>Cordova</li>
-<li>phoneGap</li>
-<li>Ionic</li>
-<li>jQuery Mobile</li>
-</ul>
+    <ul>
+        <li>Cordova</li>
+        <li>phoneGap</li>
+        <li>Ionic</li>
+        <li>jQuery Mobile</li>
+    </ul>
 
-<h2>
-<a id="votre-api-key-et-site-id" class="anchor" href="#votre-api-key-et-site-id" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Votre Api Key et Site ID</h2>
+    <h2>
+        <a id="votre-api-key-et-site-id" class="anchor" href="#votre-api-key-et-site-id" aria-hidden="true"><span
+                aria-hidden="true" class="octicon octicon-link"></span></a>Votre Api Key et Site ID</h2>
 
-<p>Ces informations sont disponibles dans votre BackOffice CinetPay.</p>
+    <p>Ces informations sont disponibles dans votre BackOffice CinetPay.</p>
 
-<h2>
-<a id="exemple-intégration" class="anchor" href="#exemple-int%C3%A9gration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Exemple Intégration</h2>
+    <h2>
+        <a id="exemple-intégration" class="anchor" href="#exemple-int%C3%A9gration" aria-hidden="true"><span
+                aria-hidden="true" class="octicon octicon-link"></span></a>Exemple Intégration</h2>
 
-<p>Vous trouverez un exemple d'intégration complet dans le dossier exemple/html/</p>
+    <p>Vous trouverez un exemple d'intégration complet dans le dossier /exemple/html/</p>
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/cinetpay/seamlessIntegration">Seamless Integration</a> is maintained by <a href="https://github.com/cinetpay">cinetpay</a>.</span>
+    <footer class="site-footer">
+        <span class="site-footer-owner"><a
+                href="https://github.com/cinetpay/seamlessIntegration">Seamless Integration</a> par  <a
+                href="https://github.com/cinetpay">CinetPay</a></span>
+    </footer>
 
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
+</section>
 
-    </section>
 
-  
-  </body>
+</body>
 </html>
