@@ -1,0 +1,27 @@
+{
+  "name": "seamlessIntegration",
+  "version": "1.0.0",
+  "homepage": "https://github.com/cinetpay/seamlessIntegration",
+  "authors": [
+    "Fawaz Adisa",
+    "Daniel Dindji"
+  ],
+  "description": "CinetPay Seamless Integration",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "cinetpay",
+    "orange",
+    "money",
+    "mtn",
+    "moov",
+    "payment",
+    "payments",
+    "ecommerce",
+    "seamlessIntegration"
+  ],
+  "ignore": [
+    "idea"
+  ]
+}

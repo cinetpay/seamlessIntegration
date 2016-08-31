@@ -1,0 +1,32 @@
+{
+  "name": "seamlessIntegration",
+  "version": "1.0.0",
+  "description": "CinetPay Seamless Integration",
+  "authors": [
+    "Fawaz Adisa",
+    "Daniel Dindji"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/cinetpay/seamlessIntegration/raw/master/LICENSE.md"
+    }
+  ],
+  "keywords": [
+    "cinetpay",
+    "orange",
+    "money",
+    "mtn",
+    "moov",
+    "payment",
+    "payments",
+    "ecommerce",
+    "javascriptbuttons",
+    "seamlessIntegration"
+  ],
+  "homepage": "http://cinetpay.github.io/seamlessIntegration",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cinetpay/seamlessIntegration.git"
+  }
+}
