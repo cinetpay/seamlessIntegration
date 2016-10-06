@@ -136,8 +136,6 @@ Exemple :
     <input type="hidden"  id="amount" value="10">
 
     <input type="hidden" id="currency" value="CFA">
-
-    <input type="hidden" id="notify_url" value="http://mondomaine.com/notify">
     
     <input type="hidden" id="trans_id" value="">
     
@@ -158,7 +156,8 @@ Exemple (fichier payment.js) :
 <script >
     CinetPay.setConfig({
             apikey: '174323661757617531bf99c9.80613927',
-            site_id: 393509
+            site_id: 393509,
+            notify_url: 'http://mondomaine.com/notify/'
         });
     var process_payment = document.getElementById('process_payment');
         process_payment.addEventListener('click', function () {
@@ -167,8 +166,7 @@ Exemple (fichier payment.js) :
                 trans_id: document.getElementById('trans_id').value,
                 currency: document.getElementById('currency').value,
                 designation: document.getElementById('designation').value,
-                cpm_custom: document.getElementById('cpm_custom').value,
-                notify_url: document.getElementById('notify_url').value
+                custom: document.getElementById('cpm_custom').value
             });
             CinetPay.getSignature();
         });
