@@ -1,10 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
 function init() {
 
     var trans_id = document.getElementById('trans_id');
@@ -13,10 +6,14 @@ function init() {
     var amount = document.getElementById('amount');
     amount.value = Math.floor((Math.random() * 100) + 5);
 
+    var custom = document.getElementById('cpm_custom');
+    custom.value = Math.floor((Math.random() * 99999) + 7);
+
     //-------------Configuration
     CinetPay.setConfig({
         apikey: '174323661757617531bf99c9.80613927',
-        site_id: 393509
+        site_id: 393509,
+        notify_url: 'http://dev.vename.com/test/notify.php'
     });
     //-------------Gestion des evenements
     //error
@@ -64,10 +61,8 @@ function init() {
             trans_id: document.getElementById('trans_id').value,
             currency: document.getElementById('currency').value,
             designation: document.getElementById('designation').value,
-            cpm_custom: document.getElementById('cpm_custom').value,
-            notify_url: document.getElementById('notify_url').value
+            custom: document.getElementById('cpm_custom').value
         });
         CinetPay.getSignature();
     });
-
 }
