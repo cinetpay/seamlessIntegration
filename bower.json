@@ -1,6 +1,6 @@
 {
   "name": "seamlessIntegration",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "homepage": "https://github.com/cinetpay/seamlessIntegration",
   "authors": [
     "Fawaz Adisa",
@@ -20,8 +20,5 @@
     "payments",
     "ecommerce",
     "seamlessIntegration"
-  ],
-  "ignore": [
-    "idea"
   ]
 }
