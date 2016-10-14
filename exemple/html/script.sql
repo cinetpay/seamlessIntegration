@@ -22,7 +22,7 @@ ALTER TABLE `commande`
   ADD PRIMARY KEY (`IDCOMMANDE`),
   ADD KEY `pk_commande` (`IDCOMMANDE`),
   ADD KEY `index_pk_commande` (`IDCOMMANDE`),
-  ADD KEY `fk_client_commande` (`IDCLIENT`);
+--  ADD KEY `fk_client_commande` (`IDCLIENT`);
 
 
 ALTER TABLE `commande`
