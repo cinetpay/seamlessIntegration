@@ -195,6 +195,7 @@ Exemple (suite du fichier payment.js):
         result_div.innerHTML = 'Paiement en cours <br>';
         result_div.innerHTML += '<b>code:</b>' + e.code + '<br><b>Message:</b>:' + e.message;
    });
+   CinetPay.on('signatureCreated', function () {})
    CinetPay.on('paymentSuccessfull', function (paymentInfo) {
            if(typeof paymentInfo.lastTime != 'undefined'){
                result_div.innerHTML = '';
