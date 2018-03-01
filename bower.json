@@ -1,6 +1,6 @@
 {
   "name": "seamlessIntegration",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "homepage": "https://github.com/cinetpay/seamlessIntegration",
   "authors": [
     "Fawaz Adisa",
@@ -19,6 +19,10 @@
     "payment",
     "payments",
     "ecommerce",
-    "seamlessIntegration"
+    "seamlessIntegration",
+    "ionic",
+    "phonegap",
+    "cordova",
+    "jquerymobile"
   ]
 }
