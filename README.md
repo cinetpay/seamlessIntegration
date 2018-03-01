@@ -7,6 +7,14 @@ _Il vous faut au préalable avoir une autorisation par CinetPay pour utiliser le
 
 _Pour avoir une autorisation, veuillez envoyez un mail à [support@cinetpay.com](mailto:support@cinetpay.com)_
 
+## Compatibilité Application Hybride
+
+CinetPay Seamless Integration a été testé et fonctionne sur :
+
+* Cordova
+* phoneGap
+* Ionic
+* jQuery Mobile
 L'integration de ce SDK se fait en trois etapes :
 
 ## Etape 1 : Préparer la page de notification
@@ -128,6 +136,10 @@ Le formulaire de paiement CinetPay est constitué de :
 * `designation` : La designation de votre paiement
 * `notify_url`  : le lien de notification silencieuse (IPN) après paiement
 
+Vous pouvez ajouter en option ces deux elements :
+* `cel_phone_num`      : Numéro de téléphone sur lequel l'utilisateur effectuera le paiement
+* `cpm_phone_prefixe`    : Code Pays du numéro de téléphone (exemple 225)
+
 Exemple :
 
 ```html
@@ -216,16 +228,8 @@ CinetPay Seamless Integration a été testé et fonctionne sur tous les navigate
 * Chrome
 * Safari
 * Firefox
+* Opera
 * Internet Explorer 8+.
-
-## Compatibilité Application Hybride
-
-CinetPay Seamless Integration a été testé et fonctionne sur :
-
-* Cordova
-* phoneGap
-* Ionic
-* jQuery Mobile
 
 ## Votre Api Key et Site ID
 
