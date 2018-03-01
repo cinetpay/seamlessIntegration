@@ -127,7 +127,7 @@ Exemple (en TEST) :
    </head> 
 ```
 
-####Creation du formulaire CinetPay
+#### Creation du formulaire CinetPay
 
 Le formulaire de paiement CinetPay est constitué de :
 * `amount`      : Montant du paiement
@@ -160,7 +160,7 @@ Exemple :
 ```
 NB : _Avant l'affichage de ce formulaire, vous devez enregistrer les informations concernant cette transaction dans votre base de données afin de les verifier après paiement du client_
 
-####Lier le formulaire au SDK Javascript
+#### Lier le formulaire au SDK Javascript
 
 Sur clic du bouton "Proceder au Paiement", Nous allons recuperer le montant de la transaction, l'identifiant de la transaction, la devise, la désignation et l'url de notification pour debuter le processus de paiement transparent sur CinetPay
 Exemple (fichier payment.js) :
