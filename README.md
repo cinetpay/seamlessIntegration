@@ -3,10 +3,6 @@
 CinetPay Seamless Integration permet d'intégrer facilement CinetPay de façon transparente à son service en ligne, c'est à dire que le client effectue le paiement sans quitter le site
 du marchand.
 
-_Il vous faut au préalable avoir une autorisation par CinetPay pour utiliser le seamless Integration_
-
-_Pour avoir une autorisation, veuillez envoyez un mail à [support@cinetpay.com](mailto:support@cinetpay.com)_
-
 ## Compatibilité Application Hybride
 
 CinetPay Seamless Integration a été testé et fonctionne sur :
@@ -111,7 +107,6 @@ if (isset($_POST['cpm_trans_id'])) {
 
 Avant de commencer cette etape, il faut lier le seamless SDK à votre page :
 
-* `https://www.cinetpay.com/cdn/seamless_sdk/latest/cinetpay.sandbox.min.js` : si vous êtes en test
 * `https://www.cinetpay.com/cdn/seamless_sdk/latest/cinetpay.prod.min.js`    : si vous êtes en production
 
 Cela se fait dans la balise head de votre page web
@@ -121,7 +116,7 @@ Exemple (en TEST) :
    <head>
        ...
        <script charset="utf-8" 
-               src="https://www.cinetpay.com/cdn/seamless_sdk/latest/cinetpay.sandbox.min.js"
+               src="https://www.cinetpay.com/cdn/seamless_sdk/latest/cinetpay.prod.min.js"
                type="text/javascript">
        </script>
    </head> 
