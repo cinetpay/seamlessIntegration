@@ -111,7 +111,7 @@ Avant de commencer cette etape, il faut lier le seamless SDK à votre page :
 
 Cela se fait dans la balise head de votre page web
 
-Exemple (en TEST) :
+Exemple (en PROD) :
 ```html
    <head>
        ...
